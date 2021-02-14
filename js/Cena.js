@@ -80,6 +80,7 @@ export default class Cena{
             
             }   
         }
+        this.aRemover = [];
     }
 }
 
