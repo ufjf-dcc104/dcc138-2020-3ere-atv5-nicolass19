@@ -4,7 +4,7 @@ import Sprite from "./Sprite.js";
 
 const assets = new AssetManager();
 
-assets.carrregaImagem("garota", "assets/garota.png");   
+assets.carregaImagem("garota", "assets/garota.png");   
 assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
 document.body.appendChild(assets.img("garota"));
