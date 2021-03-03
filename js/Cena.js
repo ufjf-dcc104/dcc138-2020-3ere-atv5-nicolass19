@@ -32,9 +32,8 @@ export default class Cena{
     passo(dt){
         if(this.assets.acabou()){
             for (const sprite of this.sprites) {
-                sprite.passo(dt);
-            
-        }
+                 sprite.passo(dt);
+            } 
         }
     }
     quadro(t){
