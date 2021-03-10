@@ -16,11 +16,12 @@ export default class Cena{
     desenhar() {
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-        this.mapa.desenhar(this.ctx);
+        this.mapa?.desenhar(this.ctx);
         if(this.assets.acabou()){
             for (let s = 0; s < this.sprites.length; s++) {
                 const sprite = this.sprites[s];
                 sprite.desenhar(this.ctx);
+                sprite.aplicaRestricoes();
 
         }
         
