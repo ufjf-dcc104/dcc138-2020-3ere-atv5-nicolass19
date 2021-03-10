@@ -8,6 +8,9 @@ const mixer= new Mixer(10);
 
 const assets = new AssetManager(mixer);
 
+assets.carregaImagem("chao", "assets/chao.png");
+assets.carregaImagem("muro", "assets/muro.png");
+assets.carregaImagem("dust", "assets/dust.png");
 assets.carregaImagem("garota", "assets/garota.png");   
 assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
