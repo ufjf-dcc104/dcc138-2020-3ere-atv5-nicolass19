@@ -1,3 +1,4 @@
+import Sprite from "./Sprite.js";
 export default class Cena{
     /*É responsável por desenhar  elementos  na tela em uma animação.
     */
@@ -99,6 +100,40 @@ export default class Cena{
     configuraMapa(mapa){
         this.mapa = mapa;
         this.mapa.cena = this;
+      }
+      criarSpriteAleatorio(n) {
+        let sprites = [];
+        for (let i = 0; i < n; i++) {
+          let sprite = new Sprite({
+            x: this.valorGerado(64, 384 ),
+            y: this.valorGerado(64, 256),
+            vx: this.valorGerado(-10, 10),
+            vy: this.valorGerado(-10, 10),
+            color: this.corGerada(),
+          });
+          sprites.push(sprite);
+        }
+        return sprites;
+      }
+      adicionarSpriteAleatorio(n) {
+        let sprites = this.criarSpriteAleatorio(n);
+        for (let i = 0; i < sprites.length; i++) {
+          this.adicionar(sprites[i]);
+        }
+      }
+      valorGerado(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+    
+      corGerada() {
+        let letras = "0123456789ABCDEF";
+        let cor = "#";
+        for (let i = 0; i < 6; i++) {
+          cor += letras[Math.floor(Math.random() * 16)];
+        }
+        return cor;
       }
 }
 
