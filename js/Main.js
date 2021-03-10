@@ -12,11 +12,11 @@ assets.carregaAudio("moeda", "assets/coin.wav");
 const canvas = document.querySelector("canvas");
 const cena1 = new Cena(canvas, assets);
 const pc = new Sprite({vx: 10});
-const en1 = new Sprite({x:140, y:95, w:30, h:undefined, color:"red"});
+const en1 = new Sprite({x:140, w:30, color:"red"});
 
 cena1.adicionar(pc);
 cena1.adicionar(en1);
-cena1.adicionar(new Sprite({x:40, y:95, w:30, h:undefined, color:"red"}));
+cena1.adicionar(new Sprite({ y:40, w:30, color:"red"}));
 
 cena1.iniciar();
 
