@@ -101,7 +101,7 @@ export default class Cena{
         this.mapa = mapa;
         this.mapa.cena = this;
       }
-      criarSpriteAleatorio(n) {
+      criarSpriteAleatorio(n=1) {
         let sprites = [];
         for (let i = 0; i < n; i++) {
           let sprite = new Sprite({
@@ -134,6 +134,11 @@ export default class Cena{
           cor += letras[Math.floor(Math.random() * 16)];
         }
         return cor;
+      }
+      recolocarSprite(t){
+        setInterval(() => {
+          this.adicionarSpriteAleatorio(1);
+        }, t);
       }
 }
 
