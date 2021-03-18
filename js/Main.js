@@ -4,8 +4,10 @@ import Sprite from "./Sprite.js";
 import Mixer from "./Mixer.js";
 import Mapa from "./Mapa.js"
 import modeloMapa1 from "../maps/mapa1.js";
-const mixer= new Mixer(10);
+import InputManager from "./InputManager.js";
 
+const input = new InputManager();
+const mixer= new Mixer(10);
 const assets = new AssetManager(mixer);
 
 assets.carregaImagem("chao", "assets/chao.png");
@@ -20,6 +22,13 @@ assets.carregaAudio("boom", "assets/boom.wav");
 const canvas = document.querySelector("canvas");
 canvas.width = 14*32;
 canvas.height = 10*32;
+
+input.configurarTeclado({
+"ArrowLeft":"MOVE_ESQUERDA",
+"ArrowRight":"MOVE_DIREITA",
+}
+);
+
 const cena1 = new Cena(canvas, assets);
 const mapa1 = new Mapa(10, 14, 32);
 mapa1.carregaMapa(modeloMapa1);
