@@ -77,7 +77,7 @@ export default class Sprite {
         const pmx = this.mx + 1;
         const pmy = this.my;
         if (this.cena.mapa.tiles[pmy][pmx] != 0) {
-          const tile = {
+          const tiles = {
             x: pmx * SIZE + SIZE / 2,
             y: pmy * SIZE + SIZE / 2,
             w: SIZE,
@@ -85,14 +85,14 @@ export default class Sprite {
           };
           this.cena.ctx.strokeStyle = "white";
           this.cena.ctx.strokeRect(
-            tile.x - SIZE / 2,
-            tile.y - SIZE / 2,
+            tiles.x - SIZE / 2,
+            tiles.y - SIZE / 2,
             SIZE,
             SIZE
           );
           if (this.colidiuCom(tile)) {
             this.vx = 0;
-            this.x = tile.x - tile.w / 2 - this.w / 2 - 1;
+            this.x = tiles.x - tiles.w / 2 - this.w / 2 - 1;
           }
         }
       }
@@ -104,7 +104,7 @@ export default class Sprite {
       const pmx = this.mx - 1;
       const pmy = this.my;
       if (this.cena.mapa.tiles[pmy][pmx] != 0) {
-        const tile = {
+        const tiles = {
           x: pmx * SIZE + SIZE / 2,
           y: pmy * SIZE + SIZE / 2,
           w: SIZE,
@@ -112,14 +112,14 @@ export default class Sprite {
         };
         this.cena.ctx.strokeStyle = "white";
         this.cena.ctx.strokeRect(
-          tile.x - SIZE / 2,
-          tile.y - SIZE / 2,
+          tiles.x - SIZE / 2,
+          tiles.y - SIZE / 2,
           SIZE,
           SIZE
         );
-        if (this.colidiuCom(tile)) {
+        if (this.colidiuCom(tiles)) {
           this.vx = 0;
-          this.x = tile.x + tile.w / 2 + this.w / 2 + 1;
+          this.x = tiles.x + tiles.w / 2 + this.w / 2 + 1;
         }
       }
     }
@@ -130,7 +130,7 @@ export default class Sprite {
       const pmx = this.mx;
       const pmy = this.my + 1;
       if (this.cena.mapa.tiles[pmy][pmx] != 0) {
-        const tile = {
+        const tiles = {
           x: pmx * SIZE + SIZE / 2,
           y: pmy * SIZE + SIZE / 2,
           w: SIZE,
@@ -138,14 +138,14 @@ export default class Sprite {
         };
         this.cena.ctx.strokeStyle = "white";
         this.cena.ctx.strokeRect(
-          tile.x - SIZE / 2,
-          tile.y - SIZE / 2,
+          tiles.x - SIZE / 2,
+          tiles.y - SIZE / 2,
           SIZE,
           SIZE
         );
-        if (this.colidiuCom(tile)) {
+        if (this.colidiuCom(tiles)) {
           this.vy = 0;
-          this.y = tile.y - tile.h / 2 - this.h / 2 - 1;
+          this.y = tiles.y - tiles.h / 2 - this.h / 2 - 1;
         }
       }
     }
@@ -156,7 +156,7 @@ export default class Sprite {
       const pmx = this.mx;
       const pmy = this.my - 1;
       if (this.cena.mapa.tiles[pmy][pmx] != 0) {
-        const tile = {
+        const tiles = {
           x: pmx * SIZE + SIZE / 2,
           y: pmy * SIZE + SIZE / 2,
           w: SIZE,
@@ -164,14 +164,14 @@ export default class Sprite {
         };
         this.cena.ctx.strokeStyle = "white";
         this.cena.ctx.strokeRect(
-          tile.x - SIZE / 2,
-          tile.y - SIZE / 2,
+          tiles.x - SIZE / 2,
+          tiles.y - SIZE / 2,
           SIZE,
           SIZE
         );
-        if (this.colidiuCom(tile)) {
+        if (this.colidiuCom(tiles)) {
           this.vy = 0;
-          this.y = tile.y + tile.h / 2 + this.h / 2 + 1;
+          this.y = tiles.y + tiles.h / 2 + this.h / 2 + 1;
         }
       }
     }
