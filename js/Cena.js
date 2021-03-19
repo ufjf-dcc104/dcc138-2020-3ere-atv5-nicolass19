@@ -1,18 +1,14 @@
 import Sprite from "./Sprite.js";
+
 export default class Cena{
     /*É responsável por desenhar  elementos  na tela em uma animação.
     */
-    constructor(canvas, assets = null){
+    constructor(canvas = null, assets = null){
         this.canvas=canvas;
-        this.ctx = canvas.getContext("2d");
-        this.sprites = [];
-        this.aRemover = [];
-        this.t0 = null;
-        this.dt = 0;
-        this.idAnim = null;
+        this.ctx = canvas?.getContext("2d");
         this.assets = assets;
-        this.mapa=null;
         this.game = null;
+        this.preparar();
     }
 
     desenhar() {
@@ -32,8 +28,8 @@ export default class Cena{
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
     }
     adicionar (sprite){
-        sprite.cena = this;
-        this.sprites.push(sprite);
+      sprite.cena = this;
+      this.sprites.push(sprite);
     }
     passo(dt){
         if(this.assets.acabou()){
@@ -50,11 +46,16 @@ export default class Cena{
         this.desenhar();
         this.checaColisao();
         this.removerSprites();
+        if(this.rodando){
+          this.iniciar();
+        
+        };
 
-        this.iniciar();
+        
         this.t0 = t;
     }
     iniciar(){
+        this.rodando = false;
         this.idAnim = requestAnimationFrame(
             (t) => {this.quadro(t);}
         );   
@@ -78,16 +79,7 @@ export default class Cena{
             }
         }
     }
-    quandoColidir(a,b){
-        if(!this.aRemover.includes(a)){
-            this.aRemover.push(a);
-        }
-        if(!this.aRemover.includes(b)){
-            this.aRemover.push(b);
-        }
-        this.assets.play("boom");
-         
-    }
+    
     removerSprites(){
         for (const alvo of this.aRemover) {
             const idx = this.sprites.indexOf(alvo);
@@ -103,6 +95,17 @@ export default class Cena{
         this.mapa = mapa;
         this.mapa.cena = this;
       }
+
+      preparar(){
+        this.sprites = [];
+        this.aRemover = [];
+        this.t0 = null;
+        this.dt = 0;
+        this.idAnim = null;
+        this.mapa = null;
+        this.rodando = true;
+      }
+
       criarSpriteAleatorio(n=1) {
         let sprites = [];
         for (let i = 0; i < n; i++) {
