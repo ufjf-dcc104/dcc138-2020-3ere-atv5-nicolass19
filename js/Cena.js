@@ -107,8 +107,8 @@ export default class Cena{
         let sprites = [];
         for (let i = 0; i < n; i++) {
           let sprite = new Sprite({
-            x: this.valorGerado(64, 384 ),
-            y: this.valorGerado(64, 256),
+            x: this.valorGerado(100, 200 ),
+            y: this.valorGerado(100, 200),
             vx: this.valorGerado(-10, 10),
             vy: this.valorGerado(-10, 10),
             color: this.corGerada(),

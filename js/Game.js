@@ -18,10 +18,13 @@ export default class Game {
     }
     selecionaCena(chave){
         if(this.cenas.has(chave)){
+            console.log(chave);
+            this.cena.parar();
             this.cena = this.cenas.get(chave);
+            this.cena.iniciar();
         }
     } 
-    iniciar(){
+    iniciar(){ 
         this.cena?.iniciar();
     }
     parar(){
