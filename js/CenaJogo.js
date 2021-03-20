@@ -6,32 +6,38 @@ import Sprite from "./Sprite.js";
 
 export default class CenaJogo extends Cena {
   quandoColidir(a, b) {
+    
     if (!this.aRemover.includes(a)) {
       this.aRemover.push(a);
     }
     if (!this.aRemover.includes(b)) {
       this.aRemover.push(b);
     }
-    this.assets.play("boom");
+    if (a.tags.has("pc") && b.tags.has("enemy")){
+      this.game.selecionaCena("Fim");
+    }
   }
 
   preparar() {
+    super.preparar();
     const mapa1 = new Mapa(10, 14, 32);
     mapa1.carregaMapa(modeloMapa1);
     this.configuraMapa(mapa1);
 
     const pc = new Sprite({ x: 50, y: 150 });
+    pc.tags.add("pc");
+    const cena = this;
     pc.controlar = function (dt) {
-      if (input.comandos.get("MOVE_ESQUERDA")) {
+      if (cena.input.comandos.get("MOVE_ESQUERDA")) {
         this.vx = -50;
-      } else if (input.comandos.get("MOVE_DIREITA")) {
+      } else if (cena.input.comandos.get("MOVE_DIREITA")) {
         this.vx = +50;
       } else {
         this.vx = 0;
       }
-      if (input.comandos.get("MOVE_CIMA")) {
+      if (cena.input.comandos.get("MOVE_CIMA")) {
         this.vy = -50;
-      } else if (input.comandos.get("MOVE_BAIXO")) {
+      } else if (cena.input.comandos.get("MOVE_BAIXO")) {
         this.vy = +50;
       } else {
         this.vy = 0;

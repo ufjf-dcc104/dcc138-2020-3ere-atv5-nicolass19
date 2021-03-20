@@ -5,6 +5,7 @@ import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js";
 import CenaCarregando from "./CenaCarregando.js";
 import CenaFim from "./CenaFim.js";
+import Sprite from "./Sprite.js";
 
 
 const input = new InputManager();
@@ -41,6 +42,35 @@ const cena2 = new CenaFim();
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
 game.adicionarCena("Fim", cena2);
+
+const mapa1 = new  Mapa(10,14,32);
+mapa1.carregaMapa(modeloMapa1);
+cena1.configuraMapa(mapa1);
+const pc = new Sprite({x:50, y:150});
+pc.tags.add("pc");
+pc.controlar = function(dt){
+    if(input.comandos.get("MOVE_ESQUERDA")){
+        this.vx = -50;
+    } else if(input.comandos.get("MOVE_DIREITA")){
+        this.vx = +50;
+    } else{
+        this.vx = 0
+    }
+    if(input.comandos.get("MOVE_CIMA")){
+        this.vy = -50;
+    }else if(input.comandos.get("MOVE_BAIXO")){
+        this.vy = +50;
+    }else{
+        this.vy = 0;
+    }
+};
+cena1.adicionar(pc);
+function perseguePC(dt) {
+    this.vx = 25*Math.sign(pc.x - this.x);
+    this.vy = 25*Math.sign(pc.y - this.y);    
+}
+
+
 
 game.iniciar();
 

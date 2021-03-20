@@ -5,7 +5,7 @@ export default class Cena{
     */
     constructor(canvas = null, assets = null){
         this.canvas=canvas;
-        this.ctx = canvas?.getContext("2d");
+        this.ctx = canvas?.getContext("2d");  
         this.assets = assets;
         this.game = null;
         this.preparar();
@@ -20,7 +20,7 @@ export default class Cena{
                 const sprite = this.sprites[s];
                 sprite.desenhar(this.ctx);
                 sprite.aplicaRestricoes();
-
+ 
         }
         
         }
@@ -55,13 +55,14 @@ export default class Cena{
         this.t0 = t;
     }
     iniciar(){
-        this.rodando = false;
+        this.rodando = true;
         this.idAnim = requestAnimationFrame(
             (t) => {this.quadro(t);}
         );   
     }
 
     parar(){
+        this.rodando = false;
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
@@ -101,7 +102,7 @@ export default class Cena{
         this.aRemover = [];
         this.t0 = null;
         this.dt = 0;
-        this.idAnim = null;
+        this.idAnim = null; 
         this.mapa = null;
         this.rodando = true;
       }
