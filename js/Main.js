@@ -6,6 +6,8 @@ import CenaJogo from "./CenaJogo.js";
 import CenaCarregando from "./CenaCarregando.js";
 import CenaFim from "./CenaFim.js";
 import Sprite from "./Sprite.js";
+import Mapa from "./Mapa.js";
+import modeloMapa1 from "../maps/mapa1.js";
 
 
 const input = new InputManager();
