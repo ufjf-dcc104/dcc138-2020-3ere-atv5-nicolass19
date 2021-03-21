@@ -1,59 +1,59 @@
 import Sprite from "./Sprite.js";
-
-export default class Cena{
-    /*É responsável por desenhar  elementos  na tela em uma animação.
+export default class Cena {
+    /*
+    É responsável por desenhar elementos na tela em uma animação.
     */
-    constructor(canvas = null, assets = null){
-        this.canvas=canvas;
-        this.ctx = canvas?.getContext("2d");  
-        this.assets = assets;
-        this.game = null;
-        this.preparar();
-    }
+  constructor(canvas = null, assets = null) {
+    this.canvas = canvas;
+    this.ctx = canvas?.getContext("2d");
+    this.assets = assets;
+    this.game = null;
+    this.preparar();
+  }
 
-    desenhar() {
-        this.ctx.fillStyle = "white";
-        this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-        this.mapa?.desenhar(this.ctx);
-        if(this.assets.acabou()){
-            for (let s = 0; s < this.sprites.length; s++) {
-                const sprite = this.sprites[s];
-                sprite.desenhar(this.ctx);
-                sprite.aplicaRestricoes();
- 
-        }
-        
-        }
-        this.ctx.fillStyle  = "yellow";
-        this.ctx.fillText(this.assets?.progresso(), 10, 20);
+  desenhar() {
+    this.ctx.fillStyle = "white";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.mapa?.desenhar(this.ctx);
+    if(this.assets.acabou()){
+      for (let s = 0; s < this.sprites.length; s++) {
+        const sprite = this.sprites[s];
+        sprite.desenhar(this.ctx);
+        sprite.aplicaRestricoes();
+      }
     }
-    adicionar (sprite){
-      sprite.cena = this;
-      this.sprites.push(sprite);
-    }
-    passo(dt){
-        if(this.assets.acabou()){
-            for (const sprite of this.sprites) {
-                 sprite.passo(dt);
-            } 
-        }
-    }
-    quadro(t){
-        this.t0 = this.t0 ?? t;
-        this.dt = (t-this.t0)/1000;
+    this.ctx.fillStyle = "yellow";
+    this.ctx.fillText(this.assets?.progresso(), 10, 20);
+  }
 
-        this.passo(this.dt);
-        this.desenhar();
-        this.checaColisao();
-        this.removerSprites();
-        if(this.rodando){
-          this.iniciar();
-        
-        };
+  adicionar(sprite) {
+    sprite.cena = this;
+    this.sprites.push(sprite);
+  }
 
-        
-        this.t0 = t;
+  passo(dt) {
+    if(this.assets.acabou()){
+      for (const sprite of this.sprites) {
+        sprite.passo(dt);
+      }
     }
+  }
+
+  quadro(t) {
+    this.t0 = this.t0 ?? t;
+    this.dt = (t - this.t0) / 1000;
+
+    this.passo(this.dt);
+    this.desenhar();
+    this.checaColisao();
+    this.removerSprites();
+
+    if(this.rodando){
+      this.iniciar();
+    }
+    
+    this.t0 = t;
+  }
     iniciar(){
         this.rodando = true;
         this.idAnim = requestAnimationFrame(
@@ -79,6 +79,16 @@ export default class Cena{
                 
             }
         }
+    }
+
+    quandoColidir(a, b) {
+      if (!this.aRemover.includes(a)) {
+        this.aRemover.push(a);
+      }
+      if (!this.aRemover.includes(b)) {
+        this.aRemover.push(b);
+      }
+      this.assets.play("boom");
     }
     
     removerSprites(){
