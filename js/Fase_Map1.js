@@ -4,7 +4,9 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 
 export default class Fase_Map1 extends Cena{
+    
     quandoColidir(a, b){
+    
 
         if(a.tags.has("pc") && b.tags.has("enemy")){
             this.assets.play("boom");
@@ -28,10 +30,11 @@ export default class Fase_Map1 extends Cena{
         }
         if(a.tags.has("pc") && b.tags.has("moeda")){
             this.assets.play("moeda");
-            this.game.pontuacao+=1;
+            this.game.ponto+=1;
             if(!this.aRemover.includes(b)){
                 this.aRemover.push(b);
             }
+            
         }
         if(a.tags.has("pc") && b.tags.has("tp")){
             this.assets.play("tp");
@@ -65,11 +68,13 @@ export default class Fase_Map1 extends Cena{
             }
         };
         this.adicionar(pc);
+        
 
         function perseguePC(dt) {
             this.vx = 25*Math.sign(pc.x - this.x);
             this.vy = 25*Math.sign(pc.y - this.y);
         }
+        
 
         const c = new Sprite({x: 400, y: 270, color: "black", tags:["tp"]});
         this.adicionar(c);

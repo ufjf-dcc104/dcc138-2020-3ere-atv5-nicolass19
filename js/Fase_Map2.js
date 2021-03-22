@@ -28,7 +28,7 @@ export default class FaseMap2 extends Cena{
         }
         if(a.tags.has("pc") && b.tags.has("moeda")){
             this.assets.play("moeda");
-            this.game.pontuacao+=1;
+            this.game.ponto+=1;
             if(!this.aRemover.includes(b)){
                 this.aRemover.push(b);
             }
@@ -41,9 +41,9 @@ export default class FaseMap2 extends Cena{
     }
     preparar(){
         super.preparar();
-        const mapa1 = new Mapa(10,14,32);
-        mapa1.carregaMapa(modeloMapa2);
-        this.configuraMapa(mapa1);
+        const mapa2 = new Mapa(10,14,32);
+        mapa2.carregaMapa(modeloMapa2);
+        this.configuraMapa(mapa2);
 
         const pc = new Sprite({x: 50, vx: 10});
         pc.tags.add("pc");
@@ -71,9 +71,21 @@ export default class FaseMap2 extends Cena{
             this.vy = 25*Math.sign(pc.y - this.y);
         }
 
-        const c = new Sprite({x: 300, y: 110, color: "black", tags:["tp"]});
+        const c = new Sprite({x: 400, y: 270, color: "black", tags:["tp"]});
         this.adicionar(c);
-        const moeda = new Sprite({x: 300, y: 170, color: "yellow", tags:["moeda"]});
+        const moeda = new Sprite({x: 100, y: 200, color: "yellow", tags:["moeda"]});
         this.adicionar(moeda);
+        const moeda1 = new Sprite({x:200,  y: 46, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda1);
+        const moeda2 = new Sprite({x: 150, y: 85, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda2);
+        const moeda3 = new Sprite({x: 300, y: 150, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda3);
+        const en1 = new Sprite({x: 300, y: 200, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en1);
+        const en2 = new Sprite({x: 28, y: 200, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en2);
+        const en3 = new Sprite({x: 150, y: 170, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en3);
     }
 } 

@@ -20,6 +20,7 @@ assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
 assets.carregaAudio("moeda", "assets/coin.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
+assets.carregaAudio("tp", "assets/tp.mp3");
 
 const canvas = document.querySelector("canvas");
 canvas.width = 14*32;
