@@ -37,7 +37,7 @@ const cena0 = new CenaCarregando();
 const cena1 = new CenaJogo();
 const cena2 = new CenaFim();
 game.adicionarCena("carregando", cena0);
-game.adicionarCena("jogo", cena1);
+game.adicionarCena("fase1", cena1);
 game.adicionarCena("fim", cena2);
 
 game.iniciar();
