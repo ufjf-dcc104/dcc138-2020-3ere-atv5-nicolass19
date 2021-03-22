@@ -71,9 +71,22 @@ export default class Fase_Map1 extends Cena{
             this.vy = 25*Math.sign(pc.y - this.y);
         }
 
-        const c = new Sprite({x: 300, y: 110, color: "black", tags:["tp"]});
+        const c = new Sprite({x: 400, y: 270, color: "black", tags:["tp"]});
         this.adicionar(c);
-        const moeda = new Sprite({x: 300, y: 170, color: "yellow", tags:["moeda"]});
+        const moeda = new Sprite({x: 100, y: 200, color: "yellow", tags:["moeda"]});
         this.adicionar(moeda);
+        const moeda1 = new Sprite({x: 180, y: 200, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda1);
+        const moeda2 = new Sprite({x: 70, y: 500, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda2);
+        const moeda3 = new Sprite({x: 300, y: 240, color: "yellow", tags:["moeda"]});
+        this.adicionar(moeda3);
+        const en1 = new Sprite({x: 400, y: 200, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en1);
+        const en2 = new Sprite({x: 200, y: 200, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en2);
+        const en3 = new Sprite({x: 80, y: 170, vx: -10, color: "red", controlar: perseguePC, tags:["enemy"]});
+        this.adicionar(en3);
     }
 }
+    
