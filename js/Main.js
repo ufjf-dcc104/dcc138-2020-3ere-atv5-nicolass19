@@ -5,6 +5,8 @@ import Game from "./Game.js";
 import CenaJogo from "./CenaJogo.js";
 import CenaCarregando from "./CenaCarregando.js";
 import CenaFim from "./CenaFim.js";
+import Fase_Map1 from "./Fase_Map1.js";
+import Fase_Map2 from "./Fase_Map2.js";
 
 const input = new InputManager();
 const mixer= new Mixer(10);
@@ -34,11 +36,14 @@ ArrowDown:"MOVE_BAIXO",
 
 const game = new Game(canvas, assets, input);
 const cena0 = new CenaCarregando();
-const cena1 = new CenaJogo();
-const cena2 = new CenaFim();
+const cena1 = new Fase_Map1();
+const cena2 = new Fase_Map2();
+const cena3 = new CenaFim();
+
 game.adicionarCena("carregando", cena0);
 game.adicionarCena("fase1", cena1);
-game.adicionarCena("fim", cena2);
+game.adicionarCena("fase2", cena2);
+game.adicionarCena("fim", cena3);
 
 game.iniciar();
 
